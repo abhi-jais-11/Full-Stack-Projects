@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+<section class="py-2">
+  <!-- Main Content -->
+  <div id="qa-content">
+    {% if ques_lst %}
+    <div class="card col-lg-6 ms-auto py-2 px-2 mt-3" style="border-radius: 20px">
+      <span class="text-muted">Question:</span>
+      <p class="mt-2 ps-4">{{ ques_lst.ques }}</p>
+    </div>
+    <div class="card col-lg-10 py-2 px-2 mt-2 mb-4" style="border-radius: 20px">
+      <span class="text-muted">Answer:</span>
+      <div class="mt-2 ps-4">{{ ques_lst.ans | safe }}</div>
+    </div>
+    {% else %}
+    <div
+      class="d-flex flex-column justify-content-center"
+      style="height: 50dvh"
+    >
+      <h1 class="gradient-text text-center">Hello, Abhinav</h1>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %} {% block input %}
+<section
+  class="bg-white card shadow-sm mt-2 overflow-hidden position-fixed"
+  style="border-radius: 20px; width: 89%; bottom: 5px"
+>
+  <form id="question-form" method="POST" class="pb-4">
+    {% csrf_token %}
+    <textarea
+      name="ques"
+      style="border: none; resize: none"
+      class="w-100 overflow-y-scroll pt-3 ps-3"
+      rows="2"
+      placeholder="Ask Me You Want ......?"
+    ></textarea>
+    <div class="d-flex justify-content-end px-4">
+      <button
+        type="submit"
+        class="p-2 shadow-sm btn btn-sm bg-dark text-white d-flex justify-content-center align-items-center"
+        style="border-radius: 50%; width: 40px; height: 40px"
+      >
+        <i class="fa fa-location-arrow fa-2x pe-1 mt-1"></i>
+      </button>
+    </div>
+  </form>
+</section>
+{% endblock %}
+<!-- Loader script on form submit -->
